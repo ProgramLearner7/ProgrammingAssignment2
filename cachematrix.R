@@ -5,11 +5,16 @@
 makeCacheMatrix <- function(x = matrix()) {
         m = NULL
         
+        setMatrix <- function(y) {
+                x <<- y
+                m <<- NULL
+        }
         getMatrix = function() x
         setInversion = function (x) m <<- solve(x)
         getInversion = function() m
         
-        list(getMatrix = getMatrix,
+        list(setMatrix = setMatrix,
+             getMatrix = getMatrix,
              setInversion = setInversion,
              getInversion = getInversion)
 }
@@ -31,4 +36,3 @@ cacheSolve <- function(x, ...) {
         m = x$setInversion(SourceMatrix)
         m
 }
-
